@@ -1,0 +1,38 @@
+@mixin add-spaces(
+  $side: all,
+  $size: 1,
+
+  $property: padding,
+
+  $sizes: $spaces,
+  $sides: (
+    all,
+    x,
+    y,
+  )
+) {
+  $current-size: list.nth($sizes, $size);
+
+  @if $side == all {
+    #{$property}: $current-size;
+  }
+  @if $side == x {
+    #{$property}: {
+      left: $current-size;
+      right: $current-size;
+    }
+  }
+  @if $side == y {
+    #{$property}: {
+      top: $current-size;
+      bottom: $current-size;
+    }
+  }
+}
+
+@mixin absolute-center($side: y) {
+  @if $side == y {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}
